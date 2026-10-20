@@ -20,6 +20,10 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Verify test secrets are available
+      run: |
+        test -n "$TEST_USERNAME" || (echo "TEST_USERNAME is missing" && exit 1)
+        test -n "$TEST_PASSWORD" || (echo "TEST_PASSWORD is missing" && exit 1)  
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v4
