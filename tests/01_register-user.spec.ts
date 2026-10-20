@@ -16,7 +16,7 @@ test.describe('Automation Exercise Authentication', () => {
 
   test('Test Case 1: Register user', async ({ page }) => {
 
-    await page.getByRole('link', { name: ' Signup / Login' }).click();
+    await page.getByRole('link', { name: 'Signup / Login' }).click();
 
     await expect(page.getByRole('heading', { name: 'New User Signup!' })).toBeVisible();
 
@@ -111,7 +111,32 @@ test.describe('Automation Exercise Authentication', () => {
     await expect(cityInput).toHaveValue('Sofia');
     await expect(zipcodeInput).toHaveValue('1000');
 
-    // Next step: Create Account and verify successful registration
-    // await page.getByRole('button', { name: 'Create Account' }).click();
+    // Create Account and verify successful registration
+    await page.getByRole('button', { name: 'Create Account' }).click();
+
+    await expect(page).toHaveURL(/\/account_created$/);
+    await expect(page.locator('[data-qa="account-created"]')).toBeVisible();
+
+    await page.locator('[data-qa="continue-button"]').click();
+    await expect(page).toHaveURL('/');
+
+    // Verify logged-in state
+    const logoutLink = page.getByRole('link', { name: 'Logout' });
+    const deleteAccountLink = page.getByRole('link', { name: 'Delete Account' });
+
+    await expect(logoutLink).toBeVisible();
+    await expect(deleteAccountLink).toBeVisible();
+
+    // Delete Account
+    await deleteAccountLink.click();
+    await expect(page.locator('[data-qa="account-deleted"]')).toBeVisible();
+
+    const continueButton = page.getByRole('link', { name: 'Continue' });
+    await continueButton.click();
+
+    await expect(page).toHaveURL('/');
+    await expect(page.getByRole('link', { name: 'Signup / Login' })).toBeVisible();
+   
+
   });
 });
