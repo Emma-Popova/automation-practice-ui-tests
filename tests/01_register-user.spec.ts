@@ -1,13 +1,6 @@
 
 import { test, expect } from '@playwright/test';
 
-const username = process.env.TEST_USERNAME;
-const password = process.env.TEST_PASSWORD;
-
-if (!username || !password) {
-  throw new Error('Test credentials are missing from environment variables.');
-}
-console.log('Username:', username);
 
 test.describe('Automation Exercise Authentication', () => {
 
