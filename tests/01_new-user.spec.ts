@@ -2,7 +2,7 @@
 import { test, expect } from '@playwright/test';
 
 
-test.describe('Automation Exercise Authentication', () => {
+test.describe(' Register New User', () => {
 
   test.beforeEach('Open page', async ({ page }) => {
     await page.goto('/');
@@ -18,20 +18,20 @@ test.describe('Automation Exercise Authentication', () => {
   test('Test Case 1: Register user', async ({ page }) => {
 
     await page.getByRole('link', { name: 'Signup / Login' }).click();
-
     await expect(page.getByRole('heading', { name: 'New User Signup!' })).toBeVisible();
 
     const uniqueEmail = `emma${Date.now()}@example.com`;
 
-    const username = process.env.TEST_USERNAME;
-    const password = process.env.TEST_PASSWORD;
+    const username = process.env.REGISTER_USERNAME;
+    const password = process.env.REGISTER_PASSWORD;
+
 
     if (!username) {
-      throw new Error('TEST_USERNAME is not defined in the environment variables.');
+      throw new Error('REGISTER_USERNAME is not defined in the environment variables.');
     }
 
     if (!password) {
-      throw new Error('TEST_PASSWORD is not defined in the environment variables.');
+      throw new Error('REGISTER_PASSWORD is not defined in the environment variables.');
     }
 
     // Signup form locators
