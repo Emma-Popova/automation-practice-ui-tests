@@ -86,7 +86,7 @@ test.describe('Automation Exercise Authentication', () => {
 
    }); 
 
-   test('Test Case 5: Logout User', async ({ page }) => {
+   test('Test Case 4: Logout User', async ({ page }) => {
     
     await page.getByRole('link', { name: 'Signup / Login' }).click();
 
@@ -111,5 +111,27 @@ test.describe('Automation Exercise Authentication', () => {
     await expect(page).toHaveURL('/login')
 
     });
+   test('Test Case 5: Register User with existing email', async({page}) => {
 
+    await page.getByRole('link', { name: 'Signup / Login' }).click();
+    await expect(page.getByRole('heading', { name: 'New User Signup!' })).toBeVisible();
+
+    const username = "Didi";
+ 
+     // Signup form locators
+    const usernameInput = page.locator('[data-qa="signup-name"]');
+    const emailInput = page.locator('[data-qa="signup-email"]');
+    const signupButton = page.getByRole('button', { name: 'Signup' });
+
+    if (!email) {
+      throw new Error('TEST_EMAIL is not defined in the environment variables.');
+    }
+
+    await usernameInput.fill(username);
+    await emailInput.fill(email);
+    await signupButton.click();
+
+    await expect(page.getByText('Email Address already exist!')).toBeVisible();
+
+   })
 });
