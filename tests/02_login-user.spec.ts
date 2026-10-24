@@ -19,7 +19,7 @@ test.describe('Automation Exercise Authentication', () => {
   test.beforeEach('Open page', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page).toHaveURL('https://automationexercise.com/');
+    await expect(page).toHaveURL('/');
 
     const acceptBtn = page.getByRole('button', { name: 'Consent' });
 
@@ -66,7 +66,8 @@ test.describe('Automation Exercise Authentication', () => {
     await expect(page.getByText('Your email or password is incorrect!')).toBeVisible();   
 
   });
-   test('Login User with incorrect password', async ({ page }) => {
+
+  test('Login User with incorrect password', async ({ page }) => {
     await page.getByRole('link', { name: 'Signup / Login' }).click();
 
     await expect(page.getByRole('heading', { name: 'Login to your account' })).toBeVisible();
@@ -85,4 +86,30 @@ test.describe('Automation Exercise Authentication', () => {
 
    }); 
 
- });
+   test('Test Case 5: Logout User', async ({ page }) => {
+    
+    await page.getByRole('link', { name: 'Signup / Login' }).click();
+
+    await expect(page.getByRole('heading', { name: 'Login to your account' })).toBeVisible();
+
+    if (!email) {
+      throw new Error('TEST_EMAIL is not defined in the environment variables.');
+    }
+
+    if (!password) {
+      throw new Error('TEST_PASSWORD is not defined in the environment variables.');
+    }
+
+    await loginEmailInput(page).fill(email);
+    await loginPasswordInput(page).fill(password);
+    await loginButton(page).click();
+
+    await expect(page.getByText('Logged in as Emma')).toBeVisible();
+
+    await page.getByRole('link', {name: "Logout"}).click();
+
+    await expect(page).toHaveURL('/login')
+
+    });
+
+});

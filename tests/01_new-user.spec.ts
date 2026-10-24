@@ -6,7 +6,7 @@ test.describe(' Register New User', () => {
 
   test.beforeEach('Open page', async ({ page }) => {
     await page.goto('/');
-    await expect(page).toHaveURL('https://automationexercise.com/');
+    await expect(page).toHaveURL('/');
 
     const acceptBtn = page.getByRole('button', { name: 'Consent' });
 
@@ -45,7 +45,7 @@ test.describe(' Register New User', () => {
     await signupButton.click();
 
     // Verify account information page
-    await expect(page).toHaveURL('https://automationexercise.com/signup');
+    await expect(page).toHaveURL('/signup');
     await expect(page.getByRole('heading', { name: 'Enter Account Information' })).toBeVisible();
 
     // Account information locators
