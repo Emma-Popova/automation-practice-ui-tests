@@ -1,19 +1,7 @@
-
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../utils/fixtures';
 
 
 test.describe(' Register New User', () => {
-
-  test.beforeEach('Open page', async ({ page }) => {
-    await page.goto('/');
-    await expect(page).toHaveURL('/');
-
-    const acceptBtn = page.getByRole('button', { name: 'Consent' });
-
-    if (await acceptBtn.isVisible()) {
-      await acceptBtn.click();
-    }
-  });
 
   test('Test Case 1: Register user', async ({ page }) => {
 
