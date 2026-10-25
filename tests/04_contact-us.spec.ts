@@ -22,7 +22,7 @@ test.describe('Test Case 6: Contact Us Form',()=> {
       const submitButton = page.locator('[data-qa="submit-button"]');
      
 
-      const username = process.env.TEST_USERNAME;
+      const username = process.env.REGISTER_USERNAME;
       const email = process.env.TEST_EMAIL;
 
         if (!email) {
