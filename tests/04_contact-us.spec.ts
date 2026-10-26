@@ -7,13 +7,7 @@ test.describe('Test Case 6: Contact Us Form',()=> {
        await page.getByRole('link', {name: ' Contact us'}).click();
 
        await expect(page.getByText('Get In Touch')).toBeVisible();
-      
-       //Contact form locators
-   //    const inputName = page.getByRole('textbox', {name: 'Name'});
-   //    const inputEmail = page.getByRole('textbox', {name: 'Email'});
-   //    const inputSubject = page.getByRole('textbox', {name: 'Subject'});
-   //    const inputMessage = page.getByRole('textbox',{name: 'Your Message Here'});
-   //    const submitButton = page.getByRole('button',{name: 'Submit'});
+
       const inputName = page.locator('[data-qa="name"]');
       const inputEmail = page.locator('[data-qa="email"]');
       const inputSubject = page.locator('[data-qa="subject"]');
