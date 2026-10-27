@@ -4,6 +4,7 @@ test.describe('Verify Test Cases Page', () => {
      test('', async({page}) => {
 
         await page.getByRole('button', {name: 'Test Cases'}).click();
+     //   console.log('Current URL:', page.url());
         await expect(page).toHaveURL('/test_cases');
         await expect(page.getByRole('heading', { name: 'Test Cases', exact:true })).toBeVisible();
 
@@ -41,7 +42,7 @@ test.describe('Verify Test Cases Page', () => {
         await expect(testCaseInstructions.getByText("7. Click 'login' button", { exact: true })).toBeVisible();
    
     });
-    
+
      test('should open Test Case 9: Search Product', async({page}) => {
         await page.getByRole('button', { name: 'Test Cases' }).click();
         await page.getByRole('link', { name: 'Test Case 9: Search Product' }).click();
@@ -52,7 +53,7 @@ test.describe('Verify Test Cases Page', () => {
         await expect(testCaseInstructions.getByText("8. Verify all the products related to search are visible", { exact: true })).toBeVisible();
 
     });
-   
+       
 });
 
     
