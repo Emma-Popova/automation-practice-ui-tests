@@ -1,6 +1,6 @@
 import { test, expect } from '../utils/fixtures';
 
-test.describe('Verify Test Cases Page', () => {
+test.describe('Test Case 7: Verify Test Cases Page', () => {
      test('', async({page}) => {
 
         await page.getByRole('button', {name: 'Test Cases'}).click();
